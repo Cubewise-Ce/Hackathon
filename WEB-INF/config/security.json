@@ -1,0 +1,17 @@
+{
+  "groups": [
+    {
+      "name": "admin",
+      "description": "Full access to all administration features",
+      "users": [
+        "admin"
+      ]
+    }
+  ],
+  "users": [
+    {
+      "name": "admin",
+      "password": "@QQ2n+pfVfY9CUGnDuO6yH9/G/D3IXZ8rJdL2TT4VYHc\u003d"
+    }
+  ]
+}

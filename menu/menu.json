@@ -1,1 +1,10 @@
-[]
+[
+  {
+    "label": "PnL",
+    "icon_class": "fa-binoculars",
+    "data": {
+      "page": "pnl"
+    },
+    "expanded": false
+  }
+]

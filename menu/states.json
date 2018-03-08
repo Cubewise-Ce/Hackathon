@@ -1,1 +1,6 @@
-{}
+{
+  "pnl": {
+    "url": "/pnl",
+    "templateUrl": "html/PnL.html"
+  }
+}
