@@ -24,14 +24,14 @@
         </thead>
         <tbody>
           <tr ng-repeat="headAccount in lists.headAccounts">
-            <td nowrap>{{headAccount}}</td>
+            <td nowrap><span ng-class="{'tm1-ui-indent':$last}">{{headAccount}}</span></td>
             <td ng-repeat="period in lists.periods">
               <tm1-ui-dbr tm1-instance="dev" tm1-cube="General Ledger" tm1-elements="Actual,2012,{{period.key}},Local,Finland,Executive General and Administration,{{headAccount}},Amount"></tm1-ui-dbr>
             </td>
           </tr>
 
           <tr ng-repeat="account in lists.childAccounts">
-              <td nowrap>{{account.alias}}</td>
+              <td nowrap><span class="tm1-ui-indent" ng-repeat="item in [1,2]"></span>{{account.alias}}</td>
               <td ng-repeat="period in lists.periods">
                 <tm1-ui-dbr tm1-instance="dev" tm1-cube="General Ledger" tm1-elements="Actual,2012,{{period.key}},Local,Finland,Executive General and Administration,{{account.key}},Amount"></tm1-ui-dbr>
               </td>
