@@ -1,4 +1,4 @@
-app.controller('InputCtrl', ['$scope', '$rootScope', '$log', '$tm1Ui', function($scope, $rootScope, $log, $tm1Ui) {
+app.controller('InputCtrl', ['$scope', '$rootScope', '$log', '$tm1Ui', '$location', function($scope, $rootScope, $log, $tm1Ui, $location) {
    /*
     *     defaults.* are variables that are declared once and are changed in the page, otherwise known as constants in programming languages
     *     lists.* should be used to store any lists that are used with ng-repeat, i.e. tm1-ui-element-list
@@ -12,7 +12,21 @@ app.controller('InputCtrl', ['$scope', '$rootScope', '$log', '$tm1Ui', function(
     $scope.selections = {};
     $scope.lists = {};
     $scope.values = {};
+    $scope.constants = {};
     
-    $scope.lists.headAccounts = ['Net Income', 'Labor Expenses'];
+    $scope.constants.INSTANCE = 'dev';
+    $scope.lists.headAccounts = ['Net Income'];
 
+    // Utilities
+    $scope.retrieveAccount = function(){
+      var account = $location.search().account;
+      if(!_.isNil(account) && !_.isEmpty(account)){
+        $tm1Ui.attributeGet($scope.constants.INSTANCE, 'Account', account, 'Description').then(function(attributeObj){
+          $scope.lists.headAccounts.push(attributeObj.Value);
+        });
+      }
+    };
+
+    // finally
+    $scope.retrieveAccount();
 }]);
