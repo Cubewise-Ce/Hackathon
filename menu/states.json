@@ -2,5 +2,9 @@
   "pnl": {
     "url": "/pnl",
     "templateUrl": "html/PnL.html"
+  },
+  "report": {
+    "url": "/report",
+    "templateUrl": "html/Report.html"
   }
 }
