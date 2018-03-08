@@ -14,3 +14,4 @@ WEB-INF/logs/application.log
 WEB-INF/web.xml.*
 WEB-INF/wro.xml.*
 WEB-INF/print/phantomjs.exe
+WEB-INF/config/settings.json
