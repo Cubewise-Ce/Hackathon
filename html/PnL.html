@@ -1,5 +1,18 @@
 <div ng-controller="PnLCtrl">
 
+    <tm1-ui-dbr-hidden
+       tm1-instance="dev"
+       tm1-cube="System Info"
+       tm1-elements="Calender Year, String"
+       ng-model="defaults.currentYear">
+    </tm1-ui-dbr-hidden>
+
+    <tm1-ui-dbr-hidden
+        tm1-instance="dev"
+        tm1-cube="System Info"
+        tm1-elements="Next Calender Year, String"
+        ng-model="defaults.nextYear">
+   </tm1-ui-dbr-hidden>
 
     <tm1-ui-element-list
       tm1-instance="dev"
@@ -11,7 +24,7 @@
     <tm1-ui-element-list
       tm1-instance="dev"
       tm1-dimension="Year"
-      tm1-subset="Years"
+      tm1-mdx="{[Year].[{{defaults.currentYear}}],[Year].[{{defaults.nextYear}}]}"
       ng-model="lists.years">
     </tm1-ui-element-list>
 
@@ -34,20 +47,20 @@
 
   <div class="col">
 
-    
-{{message}}
 <table class="table">
 
   <thead>
     <tr>
       <td></td>
-      <td ng-repeat="year in lists.years" colspan="6">{{year.key}}</td>
+      <td ng-repeat="year in lists.years" colspan="6" dynamic-colspan year="{{year.key}}" current-year='{{defaults.currentYear}}' lists-months="lists.months" lists-quarters="lists.quarters">
+        {{year.key}} 
+      </td>
     </tr>
     <tr>
-      <td>Account</td>
+      <td></td>
       <td ng-repeat-start="year in lists.years"></td>
-      <td ng-repeat="months in lists.quarters" ng-if="year.key==2012">{{months.key}}</td>
-      <td ng-repeat="months in lists.months" ng-if="year.key==2013">{{months.key}}</td> -->
+      <td ng-repeat="months in lists.quarters" ng-if="year.key==defaults.currentYear">{{months.key}}</td>
+      <td ng-repeat="months in lists.months" ng-if="year.key=='2013'">{{months.key}}</td> -->
       <td ng-repeat-end>FY</td>
     </tr>
   </thead>
@@ -55,7 +68,7 @@
   <tbody>
     <tr ng-repeat="account in lists.accounts">
       <td>
-        {{account.key}}
+        {{account.alias}}
       </td>
       <td ng-repeat-start="year in lists.years"></td>
       <td ng-repeat="months in lists.quarters" ng-if="year.key==2012">
