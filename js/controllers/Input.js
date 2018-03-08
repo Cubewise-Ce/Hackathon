@@ -18,6 +18,11 @@ app.controller('InputCtrl', ['$scope', '$rootScope', '$log', '$tm1Ui', '$locatio
   $scope.constants.DIMENSION_ACCOUNT = 'Account';
   $scope.lists.headAccounts = ['Net Income'];
 
+  // Event(s)
+  $scope.$on('filter.update', function(event, args){
+    $scope.selections[args.dimension] = args.value;
+  });
+
   // Utilities
   $scope.retrieveAccount = function(){
     var account = $location.search().account;
