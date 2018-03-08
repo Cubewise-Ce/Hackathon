@@ -18,11 +18,15 @@ app.controller('PageCtrl', ['$scope', '$rootScope', '$bedrock', '$timeout', '$st
   
   $scope.$state = $state;
 
+  // event catcher
+  $scope.$on('filter.update.request', function(event, args){
+    $scope.broadcast(args.dimension, $scope.selections[args.dimension]);
+  });
+
+  // Utilities
   $scope.broadcast = function(_dimension, _value){
     $scope.$broadcast('filter.update', {dimension: _dimension, value: _value});
   };
-
-  
 
 	$bedrock.saveDataAll('dev').then(function(status){ 
     console.info(status); 

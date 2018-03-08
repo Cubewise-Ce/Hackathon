@@ -41,4 +41,8 @@ app.controller('InputCtrl', ['$scope', '$rootScope', '$log', '$tm1Ui', '$locatio
 
   // finally
   $scope.retrieveAccount();
+
+  // needed below to get the initialized values on the filter
+  $scope.$emit('filter.update.request', {dimension: 'year'});
+  $scope.$emit('filter.update.request', {dimension: 'version'});
 }]);
