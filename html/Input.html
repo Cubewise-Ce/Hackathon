@@ -1,18 +1,32 @@
 <div ng-controller="InputCtrl">
 
+  <!-- Variable(s) -->
+  <tm1-ui-element-list tm1-instance="dev" tm1-dimension="Period" tm1-subset="Default" ng-model="lists.periods"></tm1-ui-element-list>
+
   <h1>
-    <span style="float: left; width: 50px; "><i ng-if="$root.isLoading"  class="fa fa-cog fa-spin" ></i><i ng-if="!$root.isLoading" class="fa fa-book"></i></span> Input
+    <span style="float: left; width: 50px; "><i ng-if="$root.isLoading"  class="fa fa-cog fa-spin"></i><i ng-if="!$root.isLoading" class="fa fa-book"></i></span> Input
   </h1>
   
   <div class="row">
-  	<div class="col-md-4">
-  	
-  	</div>
-  	<div class="col-md-4">
-  	
-  	</div>
-  	<div class="col-md-4">
-  	
+  	<div class="col-md-8 col-md-offset-2">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Account</th>
+            <th ng-repeat="period in lists.periods">
+              {{period.alias}}
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="headAccount in ['Net Income', 'Labor Expenses']">
+            <td>{{headAccount}}</td>
+            <td ng-repeat="period in lists.periods">
+              <tm1-ui-dbr tm1-instance="dev" tm1-cube="General Ledger" tm1-elements="Actual,2012,{{period.key}},Local,Finland,Executive General and Administration,{{headAccount}},Amount"></tm1-ui-dbr>
+            </td>
+          </tr>
+        </tbody>
+      </table>
   	</div>
   </div>
     
