@@ -1,0 +1,7 @@
+div#wrapper > div > nav{
+  display: none;
+}
+
+#page-view{
+  padding-top: 0px;
+}
