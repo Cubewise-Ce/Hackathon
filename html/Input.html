@@ -2,13 +2,17 @@
 
   <!-- Variable(s) -->
   <tm1-ui-element-list tm1-instance="dev" tm1-dimension="Period" tm1-subset="Default" ng-model="lists.periods"></tm1-ui-element-list>
+  <tm1-ui-element-list tm1-instance="dev" tm1-dimension="Account" 
+    tm1-mdx="{TM1FILTERBYLEVEL({  TM1DRILLDOWNMEMBER ( {[Account].[{{values.account}}]}, ALL, RECURSIVE )  }, 0)}" 
+    tm1-attributes="Description" ng-model="lists.childAccounts">
+  </tm1-ui-element-list>
 
   <h1>
     <span style="float: left; width: 50px; "><i ng-if="$root.isLoading"  class="fa fa-cog fa-spin"></i><i ng-if="!$root.isLoading" class="fa fa-book"></i></span> Input
   </h1>
   
   <div class="row">
-  	<div class="col-md-8 col-md-offset-2">
+  	<div class="col-md-12">
       <table class="table">
         <thead>
           <tr>
@@ -25,6 +29,13 @@
               <tm1-ui-dbr tm1-instance="dev" tm1-cube="General Ledger" tm1-elements="Actual,2012,{{period.key}},Local,Finland,Executive General and Administration,{{headAccount}},Amount"></tm1-ui-dbr>
             </td>
           </tr>
+
+          <tr ng-repeat="account in lists.childAccounts">
+              <td nowrap>{{account.alias}}</td>
+              <td ng-repeat="period in lists.periods">
+                <tm1-ui-dbr tm1-instance="dev" tm1-cube="General Ledger" tm1-elements="Actual,2012,{{period.key}},Local,Finland,Executive General and Administration,{{account.key}},Amount"></tm1-ui-dbr>
+              </td>
+            </tr>
         </tbody>
       </table>
   	</div>
