@@ -15,6 +15,9 @@ app.service('$bedrock', ['$tm1Ui', '$q', function($tm1Ui, $q){
 
 app.controller('PageCtrl', ['$scope', '$rootScope', '$bedrock', '$timeout', '$state', '$stateParams', '$http', 
                             	function($scope, $rootScope, $bedrock, $timeout, $state, $stateParams, $http) {
+  
+  $scope.$state = $state;
+  
 	$bedrock.saveDataAll('dev').then(function(status){ 
     console.info(status); 
   });
