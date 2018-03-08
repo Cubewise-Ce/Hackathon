@@ -13,4 +13,6 @@ app.controller('InputCtrl', ['$scope', '$rootScope', '$log', '$tm1Ui', function(
     $scope.lists = {};
     $scope.values = {};
     
+    $scope.lists.headAccounts = ['Net Income', 'Labor Expenses'];
+
 }]);

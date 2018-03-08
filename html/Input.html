@@ -14,13 +14,13 @@
           <tr>
             <th>Account</th>
             <th ng-repeat="period in lists.periods">
-              {{period.alias}}
+              {{$first ? 'Year' : period.alias}}
             </th>
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="headAccount in ['Net Income', 'Labor Expenses']">
-            <td>{{headAccount}}</td>
+          <tr ng-repeat="headAccount in lists.headAccounts">
+            <td nowrap>{{headAccount}}</td>
             <td ng-repeat="period in lists.periods">
               <tm1-ui-dbr tm1-instance="dev" tm1-cube="General Ledger" tm1-elements="Actual,2012,{{period.key}},Local,Finland,Executive General and Administration,{{headAccount}},Amount"></tm1-ui-dbr>
             </td>
