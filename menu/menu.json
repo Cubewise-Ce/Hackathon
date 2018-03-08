@@ -1,1 +1,10 @@
-[]
+[
+  {
+    "label": "Input",
+    "icon_class": "fa-book",
+    "data": {
+      "page": "input"
+    },
+    "expanded": false
+  }
+]

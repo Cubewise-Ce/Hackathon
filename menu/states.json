@@ -1,1 +1,6 @@
-{}
+{
+  "input": {
+    "url": "/input",
+    "templateUrl": "html/Input.html"
+  }
+}
