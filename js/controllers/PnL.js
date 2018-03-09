@@ -13,18 +13,16 @@ app.controller('PnLCtrl', ['$scope', '$rootScope', '$tm1Ui', function($scope, $r
     $scope.lists = {};
     $scope.values = {};
     
-    $scope.dynamicColspan = function(myYear){
-        $scope.message = 'test';
-        var myList = $scope.lists.quarters ;
-        var listLenght = mylist.lenght;
-        var dynamicColspanValue = 0 ;
-        var currentYear = 2012;
-        var nextYear = 2013;
-        if ( myYear == nextYear ) {
-            myList = $scope.lists.months;
-        }
-        dynamicColspanValue = myList.lenght + 2;
-        return dynamicColspanValue ;
-    };
+     // Event(s)
+  $scope.$on('filter.update', function(event, args){
+    $scope.selections[args.dimension] = args.value;
+    if (args.dimension=='year'){
+        $scope.selections.nextYear = parseInt(args.value) + 1 ;
+    }
+  });
+
+    // needed below to get the initialized values on the filter
+    $scope.$emit('filter.update.request', {dimension: 'year'});
+    $scope.$emit('filter.update.request', {dimension: 'version'});
 
 }]);

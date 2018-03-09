@@ -4,20 +4,6 @@
     <span style="float: left; width: 50px; "><i ng-if="$root.isLoading"  class="fa fa-cog fa-spin" ></i><i ng-if="!$root.isLoading" class="fa fa-cube"></i></span> Profit and Loss review and input
   </h1>
 
-    <tm1-ui-dbr-hidden
-       tm1-instance="dev"
-       tm1-cube="System Info"
-       tm1-elements="Calender Year, String"
-       ng-model="defaults.currentYear">
-    </tm1-ui-dbr-hidden>
-
-    <tm1-ui-dbr-hidden
-        tm1-instance="dev"
-        tm1-cube="System Info"
-        tm1-elements="Next Calender Year, String"
-        ng-model="defaults.nextYear">
-   </tm1-ui-dbr-hidden>
-
     <tm1-ui-element-list
       tm1-instance="dev"
       tm1-dimension="Account"
@@ -28,7 +14,7 @@
     <tm1-ui-element-list
       tm1-instance="dev"
       tm1-dimension="Year"
-      tm1-mdx="{[Year].[{{defaults.currentYear}}],[Year].[{{defaults.nextYear}}]}"
+      tm1-mdx="{[Year].[{{selections.year}}],[Year].[{{selections.nextYear}}]}"
       ng-model="lists.years">
     </tm1-ui-element-list>
 
@@ -51,20 +37,20 @@
 
 <div class="col">
 
-<table class="table">
+<table class="table  table-condensed">
 
   <thead>
     <tr>
       <td></td>
-      <td ng-repeat="year in lists.years" colspan="6" dynamic-colspan year="{{year.key}}" current-year='{{defaults.currentYear}}' lists-months="lists.months" lists-quarters="lists.quarters">
+      <td ng-repeat="year in lists.years" colspan="6" dynamic-colspan year="{{year.key}}" current-year='{{selections.year}}' lists-months="lists.months" lists-quarters="lists.quarters">
         {{year.key}} 
       </td>
     </tr>
     <tr>
       <td></td>
       <td ng-repeat-start="year in lists.years"></td>
-      <td ng-repeat="months in lists.quarters" ng-if="year.key==defaults.currentYear">{{months.key}}</td>
-      <td ng-repeat="months in lists.months" ng-if="year.key=='2013'">{{months.key}}</td> -->
+      <td ng-repeat="months in lists.quarters" ng-if="year.key==selections.year">{{months.key}}</td>
+      <td ng-repeat="months in lists.months" ng-if="year.key==selections.nextYear">{{months.key}}</td> 
       <td ng-repeat-end>FY</td>
     </tr>
   </thead>
@@ -75,7 +61,7 @@
         {{account.alias}}
       </td>
       <td ng-repeat-start="year in lists.years"></td>
-      <td ng-repeat="months in lists.quarters" ng-if="year.key==2012">
+      <td ng-repeat="months in lists.quarters" ng-if="year.key==selections.year">
         <tm1-ui-dbr-read-only
               tm1-instance="dev"
               tm1-cube="General Ledger"
@@ -83,7 +69,7 @@
               >
         </tm1-ui-dbr-read-only>
       </td>
-      <td ng-repeat="months in lists.months" ng-if="year.key==2013">
+      <td ng-repeat="months in lists.months" ng-if="year.key==selections.nextYear">
         <tm1-ui-dbr-read-only
               tm1-instance="dev"
               tm1-cube="General Ledger"
@@ -100,7 +86,7 @@
         </tm1-ui-dbr-read-only>
       </td>
       <td>
-        <a ui-sref="">Edit</a>
+        <a ui-sref="input({account:account.key})">Edit</a>
       </td>
 
     </tr>

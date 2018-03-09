@@ -7,10 +7,8 @@
     "url": "/report",
     "templateUrl": "html/Report.html"
   },
-
-    "input": {
-      "url": "/input",
-      "templateUrl": "html/Input.html"
-    }
-
+  "input": {
+    "url": "/input?account",
+    "templateUrl": "html/Input.html"
+  }
 }
