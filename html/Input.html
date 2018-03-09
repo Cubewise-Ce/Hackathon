@@ -7,39 +7,37 @@
     tm1-attributes="Description" ng-model="lists.childAccounts">
   </tm1-ui-element-list>
 
-  <h1>
-    <span style="float: left; width: 50px; "><i ng-if="$root.isLoading"  class="fa fa-cog fa-spin"></i><i ng-if="!$root.isLoading" class="fa fa-book"></i></span> Input
-  </h1>
-  
-  <div class="row">
-  	<div class="col-md-12">
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Account</th>
-            <th ng-repeat="period in lists.periods">
-              {{$first ? 'Year' : period.alias}}
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr ng-repeat="headAccount in lists.headAccounts">
-            <td nowrap><span ng-class="{'tm1-ui-indent':$last}">{{headAccount}}</span></td>
-            <td ng-repeat="period in lists.periods">
-              <tm1-ui-dbr tm1-instance="dev" tm1-cube="General Ledger" tm1-elements="Actual,2012,{{period.key}},Local,Finland,Executive General and Administration,{{headAccount}},Amount"></tm1-ui-dbr>
-            </td>
-          </tr>
-
-          <tr ng-repeat="account in lists.childAccounts">
-              <td nowrap><span class="tm1-ui-indent" ng-repeat="item in [1,2]"></span>{{account.alias}}</td>
+  <!-- Charts -->
+  <div class="jumbotron">
+    <div class="row">
+      <div class="col-md-12">
+        <table class="table table-bordered table-condensed">
+          <thead>
+            <tr>
+              <th>Account</th>
+              <th ng-repeat="period in lists.periods">
+                {{$first ? 'Year' : period.alias}}
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="headAccount in lists.headAccounts">
+              <td nowrap><span ng-class="{'tm1-ui-indent':$last}">{{headAccount}}</span></td>
               <td ng-repeat="period in lists.periods">
-                <tm1-ui-dbr tm1-instance="dev" tm1-cube="General Ledger" tm1-elements="Actual,2012,{{period.key}},Local,Finland,Executive General and Administration,{{account.key}},Amount"></tm1-ui-dbr>
+                <tm1-ui-dbr tm1-instance="dev" tm1-cube="General Ledger" tm1-elements="{{selections.version}},{{selections.year}},{{period.key}},Local,Finland,Executive General and Administration,{{headAccount}},Amount"></tm1-ui-dbr>
               </td>
             </tr>
-        </tbody>
-      </table>
-  	</div>
+            
+            <tr ng-repeat="account in lists.childAccounts">
+              <td nowrap><span class="tm1-ui-indent" ng-repeat="item in [1,2]"></span>{{account.alias}}</td>
+              <td ng-repeat="period in lists.periods">
+                <tm1-ui-dbr tm1-instance="dev" tm1-cube="General Ledger" tm1-elements="{{selections.version}},{{selections.year}},{{period.key}},Local,Finland,Executive General and Administration,{{account.key}},Amount"></tm1-ui-dbr>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
-    
 
 </div>
