@@ -6,5 +6,11 @@
   "report": {
     "url": "/report",
     "templateUrl": "html/Report.html"
-  }
+  },
+
+    "input": {
+      "url": "/input",
+      "templateUrl": "html/Input.html"
+    }
+
 }

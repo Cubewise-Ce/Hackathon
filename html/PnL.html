@@ -1,5 +1,9 @@
 <div ng-controller="PnLCtrl">
 
+  <h1>
+    <span style="float: left; width: 50px; "><i ng-if="$root.isLoading"  class="fa fa-cog fa-spin" ></i><i ng-if="!$root.isLoading" class="fa fa-cube"></i></span> Profit and Loss review and input
+  </h1>
+
     <tm1-ui-dbr-hidden
        tm1-instance="dev"
        tm1-cube="System Info"
@@ -45,7 +49,7 @@
 
 <div class="row">
 
-  <div class="col">
+<div class="col">
 
 <table class="table">
 
@@ -104,7 +108,7 @@
 
 </table>
 
-  </div>
+</div>
 
 </div>
     
