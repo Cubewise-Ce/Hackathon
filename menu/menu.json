@@ -6,5 +6,21 @@
       "page": "input"
     },
     "expanded": false
+  },
+  {
+    "label": "PnL",
+    "icon_class": "fa-binoculars",
+    "data": {
+      "page": "pnl"
+    },
+    "expanded": false
+  },
+  {
+    "label": "Report",
+    "icon_class": "fa-fire",
+    "data": {
+      "page": "report"
+    },
+    "expanded": false
   }
 ]

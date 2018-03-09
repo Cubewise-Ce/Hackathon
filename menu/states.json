@@ -2,5 +2,13 @@
   "input": {
     "url": "/input",
     "templateUrl": "html/Input.html"
+  },
+  "pnl": {
+    "url": "/pnl",
+    "templateUrl": "html/PnL.html"
+  },
+  "report": {
+    "url": "/report",
+    "templateUrl": "html/Report.html"
   }
 }
