@@ -1,4 +1,12 @@
 {
+  "pnl": {
+    "url": "/pnl",
+    "templateUrl": "html/PnL.html"
+  },
+  "report": {
+    "url": "/report",
+    "templateUrl": "html/Report.html"
+  },
   "input": {
     "url": "/input",
     "templateUrl": "html/Input.html"

@@ -1,0 +1,112 @@
+<div ng-controller="PnLCtrl">
+
+    <tm1-ui-dbr-hidden
+       tm1-instance="dev"
+       tm1-cube="System Info"
+       tm1-elements="Calender Year, String"
+       ng-model="defaults.currentYear">
+    </tm1-ui-dbr-hidden>
+
+    <tm1-ui-dbr-hidden
+        tm1-instance="dev"
+        tm1-cube="System Info"
+        tm1-elements="Next Calender Year, String"
+        ng-model="defaults.nextYear">
+   </tm1-ui-dbr-hidden>
+
+    <tm1-ui-element-list
+      tm1-instance="dev"
+      tm1-dimension="Account"
+      tm1-subset="Net Income"
+      ng-model="lists.accounts">
+    </tm1-ui-element-list>
+
+    <tm1-ui-element-list
+      tm1-instance="dev"
+      tm1-dimension="Year"
+      tm1-mdx="{[Year].[{{defaults.currentYear}}],[Year].[{{defaults.nextYear}}]}"
+      ng-model="lists.years">
+    </tm1-ui-element-list>
+
+    <tm1-ui-element-list
+      tm1-instance="dev"
+      tm1-dimension="Period"
+      tm1-subset="Months"
+      ng-model="lists.months">
+    </tm1-ui-element-list>
+
+    <tm1-ui-element-list
+      tm1-instance="dev"
+      tm1-dimension="Period"
+      tm1-subset="Quarters"
+      ng-model="lists.quarters">
+    </tm1-ui-element-list>
+
+
+<div class="row">
+
+  <div class="col">
+
+<table class="table">
+
+  <thead>
+    <tr>
+      <td></td>
+      <td ng-repeat="year in lists.years" colspan="6" dynamic-colspan year="{{year.key}}" current-year='{{defaults.currentYear}}' lists-months="lists.months" lists-quarters="lists.quarters">
+        {{year.key}} 
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td ng-repeat-start="year in lists.years"></td>
+      <td ng-repeat="months in lists.quarters" ng-if="year.key==defaults.currentYear">{{months.key}}</td>
+      <td ng-repeat="months in lists.months" ng-if="year.key=='2013'">{{months.key}}</td> -->
+      <td ng-repeat-end>FY</td>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr ng-repeat="account in lists.accounts">
+      <td>
+        {{account.alias}}
+      </td>
+      <td ng-repeat-start="year in lists.years"></td>
+      <td ng-repeat="months in lists.quarters" ng-if="year.key==2012">
+        <tm1-ui-dbr-read-only
+              tm1-instance="dev"
+              tm1-cube="General Ledger"
+              tm1-elements="Actual,{{year.key}},{{months.key}},Local,Finland,1,{{account.key}},Amount"
+              >
+        </tm1-ui-dbr-read-only>
+      </td>
+      <td ng-repeat="months in lists.months" ng-if="year.key==2013">
+        <tm1-ui-dbr-read-only
+              tm1-instance="dev"
+              tm1-cube="General Ledger"
+              tm1-elements="Actual,{{year.key}},{{months.key}},Local,Finland,1,{{account.key}},Amount"
+              >
+        </tm1-ui-dbr-read-only>
+      </td>
+      <td ng-repeat-end>
+        <tm1-ui-dbr-read-only
+          tm1-instance="dev"
+          tm1-cube="General Ledger"
+          tm1-elements="Actual,{{year.key}},Year,Local,Finland,1,{{account.key}},Amount"
+          >
+        </tm1-ui-dbr-read-only>
+      </td>
+      <td>
+        <a ui-sref="">Edit</a>
+      </td>
+
+    </tr>
+  </tbody>
+
+</table>
+
+  </div>
+
+</div>
+    
+
+</div>
