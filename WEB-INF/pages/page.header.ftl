@@ -3,7 +3,8 @@
   <!-- Breadcrumbs -->
   <ol class="breadcrumb">
     <li><a ui-sref="home" ui-sref-active="active">Home</a></li>
-    <li ng-if="$state.current.name != 'home'" ui-sref-active="active">Input</li>
+    <li><a ui-sref="home" ui-sref-active="active">Profit and Loss</a></li>
+    <li><a ui-sref="home" ui-sref-active="active">Input</a></li>
   </ol>
     
   <!-- Filter(s) -->
